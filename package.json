@@ -1,0 +1,25 @@
+{
+  "name": "micro-base",
+  "description": "An example repo, built with zeit/micro",
+  "version": "0.0.1",
+  "private": false,
+  "engines": {
+    "node": "8.x.x"
+  },
+  "dependencies": {
+    "micro": "^9.0.2"
+  },
+  "devDependencies": {
+    "micro-dev": "^2.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanj/micro-base.git"
+  },
+  "scripts": {
+    "start": "micro -p ${PORT:-8080}",
+    "dev": "micro-dev -p ${PORT:-8080}"
+  },
+  "license": "MIT",
+  "main": "index.js"
+}
