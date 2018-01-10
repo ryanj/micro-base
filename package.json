@@ -4,10 +4,13 @@
   "version": "0.0.1",
   "private": false,
   "engines": {
-    "node": "8.x.x"
+    "node": "8.x.x",
+    "npm": "5.x.x"
   },
   "dependencies": {
-    "micro": "^9.0.2"
+    "fs-extra": "^5.0.0",
+    "micro": "^9.0.2",
+    "patternfly": "^3.35.1"
   },
   "devDependencies": {
     "micro-dev": "^2.1.3"
