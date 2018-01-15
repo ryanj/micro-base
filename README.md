@@ -19,7 +19,7 @@ Use NodeJS v8.5.0 or higher when running this code:
 oc new-app -e NPM_RUN=dev ryanj/nodejs-demo:8~https://github.com/ryanj/micro-base
 ```
 
-Expose a route to your app to review changes while you work:
+Expose a route to your app, allowing external web traffic:
 
 ```bash
 oc expose svc/micro-base && xdg-open http://$(oc get route micro-base | grep -v NAME | awk '{print $2}')
@@ -30,5 +30,7 @@ Connect to a pod using a live terminal in the OpenShift dashboard, or continuous
 ```bash
 oc rsync -w --exclude='.git*,node_modules*' $(pwd)/ $(oc get pods | grep -v NAME | grep -v build | cut -f1 -d' '):/opt/app-root/src/
 ```
+
+Then, try editing `index.html` or even `index.js` to see your changes as you work.
 
 ## License: MIT

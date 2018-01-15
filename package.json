@@ -10,6 +10,7 @@
   "dependencies": {
     "fs-extra": "^5.0.0",
     "micro": "^9.0.2",
+    "mime-types": "^2.1.17",
     "patternfly": "^3.35.1"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 const {send} = require('micro'),
-         fse = require('fs-extra');
-//const mime = require('mime')
+         fse = require('fs-extra'),
+        mime = require('mime-types');
 
 // DIY readFile example
 //const fs = require('fs')
@@ -15,21 +15,16 @@ const {send} = require('micro'),
 module.exports = (req, res) => {
   //strip querystring
   const url = req.url.split('?')[0];
+  const cleanurl = (url === '/') ? "./index.html" : "."+url
+  const mimeType = mime.lookup(cleanurl)
   //url whitelist
   if(url.search('/static/') == 0
   || url.search('/node_modules/') == 0
   || url.search('/index.html') == 0
   || url === '/'){
-    //console.log(__dirname+url);
-    const cleanurl = (url === '/') ? "/index.html" : url
     try{
-      fse.readFile(__dirname + cleanurl).then((staticFile) => {
-        //sniffing mime type from 'accept' header?
-        const mimeType = req.headers.accept.split(',')[0];
-        //console.log(`the mime is: ${mime.getType(__dirname+url)}`)
-	if(cleanurl === "/index.html"){
-          res.setHeader('Content-Type', 'text/html')
-        }else if(mimeType != "*/*"){
+      fse.readFile(cleanurl).then((staticFile) => {
+        if(mimeType){
           res.setHeader('Content-Type', mimeType)
         }
         send(res, 200, staticFile)
